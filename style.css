@@ -1,0 +1,70 @@
+/* Fundo dinâmico com degradê animado */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(-45deg, #2e7d32, #388e3c, #43a047, #66bb6a);
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: white;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Layout principal */
+.container {
+  text-align: center;
+  display: none;
+  padding: 20px;
+}
+
+.container.active {
+  display: block;
+}
+
+/* Botões */
+.btn {
+  background: white;
+  color: #2e7d32;
+  border: none;
+  padding: 12px 20px;
+  margin: 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #c8e6c9;
+}
+
+/* Input da pergunta aberta */
+.input {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  width: 80%;
+  margin-top: 15px;
+  font-size: 16px;
+}
+
+/* Imagem inicial */
+.foto {
+  margin: 20px auto;
+  max-width: 250px;
+  border-radius: 20px;
+  display: block;
+}
+
+/* Fundo da página da dica */
+body.dica-fundo {
+  background: #2e4d2c;
+}

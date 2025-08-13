@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Questionário</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Tela inicial -->
+  <div id="inicio" class="container active">
+    <h1>Bem vinda meu bem 💚</h1>
+    <img src="https://i.pinimg.com/736x/d7/46/90/d74690b5c54c8d98fa04dbf63e9b7e27.jpg" alt="Imagem" class="foto">
+    <button class="btn" onclick="comecar()">Começar</button>
+  </div>
+
+  <!-- Perguntas -->
+  <div id="perguntas" class="container">
+    <h2 id="pergunta-texto"></h2>
+    <div id="respostas"></div>
+    <button id="proxima" class="btn" onclick="proximaPergunta()" style="display:none;">Próxima</button>
+  </div>
+
+  <!-- Resultado -->
+  <div id="resultado" class="container">
+    <h2>Acabou 💚</h2>
+    <p id="pontuacao"></p>
+    <div id="extra"></div>
+  </div>
+
+  <script>
+    const perguntas = [
+      "Você gosta de mim?",
+      "Dentre esses meses de amizade, você se sente confortável e satisfeita com nossa amizade?",
+      "Você me acha interessante?",
+      "Você gosta de conversar/jogar comigo?",
+      "Se por acaso um dia a gente se encontrar, você ficaria feliz?",
+      "Se a gente se ver algum dia, pra onde gostaria de ir comigo?"
+    ];
+
+    let pontos = 0;
+    let indice = 0;
+
+    function comecar() {
+      document.getElementById("inicio").classList.remove("active");
+      document.getElementById("perguntas").classList.add("active");
+      mostrarPergunta();
+    }
+
+    function mostrarPergunta() {
+      const texto = document.getElementById("pergunta-texto");
+      const respostas = document.getElementById("respostas");
+      const botaoProx = document.getElementById("proxima");
+
+      texto.textContent = perguntas[indice];
+      respostas.innerHTML = "";
+      botaoProx.style.display = "none";
+
+      if (indice < 5) {
+        // Perguntas de sim/não
+        const btnSim = document.createElement("button");
+        btnSim.textContent = "Sim";
+        btnSim.className = "btn";
+        btnSim.onclick = () => { pontos += 10; botaoProx.style.display="block"; };
+
+        const btnNao = document.createElement("button");
+        btnNao.textContent = "Não";
+        btnNao.className = "btn";
+        btnNao.onclick = () => { pontos += 5; botaoProx.style.display="block"; };
+
+        respostas.appendChild(btnSim);
+        respostas.appendChild(btnNao);
+      } else {
+        // Pergunta aberta
+        const input = document.createElement("input");
+        input.type = "text";
+        input.placeholder = "Digite sua resposta aqui...";
+        input.className = "input";
+        respostas.appendChild(input);
+
+        input.addEventListener("input", () => {
+          botaoProx.style.display = input.value.trim() ? "block" : "none";
+        });
+      }
+    }
+
+    function proximaPergunta() {
+      indice++;
+      if (indice < perguntas.length) {
+        mostrarPergunta();
+      } else {
+        mostrarResultado();
+      }
+    }
+
+    function mostrarResultado() {
+      document.getElementById("perguntas").classList.remove("active");
+      document.getElementById("resultado").classList.add("active");
+
+      document.getElementById("pontuacao").textContent = 
+        "Sua pontuação foi: " + pontos + " pontos 💚";
+
+      const extra = document.getElementById("extra");
+      if (pontos >= 30) {
+        const btn = document.createElement("button");
+        btn.textContent = "Dica";
+        btn.className = "btn";
+        btn.onclick = () => { window.location.href = "dica.html"; };
+        extra.appendChild(btn);
+      }
+    }
+  </script>
+</body>
+</html>
