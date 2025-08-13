@@ -1,15 +1,16 @@
-/* Fundo dinâmico com degradê animado */
+/* Fundo verde animado */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: linear-gradient(-45deg, #2e7d32, #388e3c, #43a047, #66bb6a);
+  background: linear-gradient(-45deg, #1b4332, #2d6a4f, #40916c, #74c69d);
   background-size: 400% 400%;
   animation: gradient 10s ease infinite;
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
+  align-items: flex-start;
+  min-height: 100vh;
   color: white;
+  padding: 30px;
 }
 
 @keyframes gradient {
@@ -18,24 +19,69 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-/* Layout principal */
+/* Container central */
 .container {
-  text-align: center;
-  display: none;
+  max-width: 700px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.25);
   padding: 20px;
+  border-radius: 15px;
+  text-align: center;
 }
 
-.container.active {
+/* Foto */
+.foto {
+  margin: 15px auto 25px;
+  max-width: 300px;
+  border-radius: 15px;
   display: block;
 }
 
-/* Botões */
+/* Perguntas */
+.pergunta {
+  margin-bottom: 25px;
+}
+
+/* Botões Sim e Não alinhados */
+.botoes {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 10px;
+}
+
+.botoes label {
+  background: white;
+  color: #1b4332;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.botoes input {
+  display: none;
+}
+
+.botoes input:checked + span {
+  font-weight: bold;
+}
+
+/* Campo de texto */
+.input {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  width: 80%;
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+/* Botão enviar */
 .btn {
   background: white;
-  color: #2e7d32;
+  color: #1b4332;
   border: none;
-  padding: 12px 20px;
-  margin: 10px;
+  padding: 12px 25px;
   border-radius: 12px;
   cursor: pointer;
   font-size: 16px;
@@ -46,25 +92,7 @@ body {
   background: #c8e6c9;
 }
 
-/* Input da pergunta aberta */
-.input {
-  padding: 10px;
-  border-radius: 10px;
-  border: none;
-  width: 80%;
-  margin-top: 15px;
-  font-size: 16px;
-}
-
-/* Imagem inicial */
-.foto {
-  margin: 20px auto;
-  max-width: 250px;
-  border-radius: 20px;
-  display: block;
-}
-
-/* Fundo da página da dica */
-body.dica-fundo {
-  background: #2e4d2c;
+/* Ocultar elementos */
+.hidden {
+  display: none;
 }
